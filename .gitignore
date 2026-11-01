@@ -1,0 +1,27 @@
+# Local secrets and machine-specific configuration
+/config.local.php
+.env
+.env.*
+!.env.example
+
+# Runtime data
+/storage/sessions/*
+!/storage/sessions/.gitkeep
+/storage/logs/*
+*.log
+
+# SQL exports can contain personal data; keep reviewed setup files in database/
+*.sql
+!/database/*.sql
+
+# Supplied competition briefs and third-party reference screenshots
+/PSCC_WebDesign_SEC_DRAFT.docx
+/Judging_Criteria.md
+/_CustomerWants.txt
+/caninekingdom.ca/
+
+# Operating system and editor files
+Thumbs.db
+.DS_Store
+/.idea/
+/.vscode/
