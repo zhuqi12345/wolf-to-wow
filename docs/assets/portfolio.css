@@ -1,0 +1,30 @@
+/* Presentation-only additions; the PHP site's stylesheet stays intact. */
+.notice-bar a { color:inherit; text-underline-offset:3px; }
+.preview-note { margin:0; padding:.8rem 1rem; border-left:3px solid var(--gold); background:var(--paper-warm); color:var(--ink-soft); font-size:.9rem; }
+.preview-note a,.preview-feedback a { font-weight:700; }
+.preview-feedback { width:100%; margin:.6rem 0 0; }
+.booking-confirm[hidden] { display:none !important; }
+.booking-confirm { scroll-margin-top:1rem; }
+.preview-services { border:0; padding:0; margin:0; min-width:0; }
+.preview-services legend { margin-bottom:.65rem; font-weight:700; }
+button.date-pill { font:inherit; text-align:left; cursor:pointer; }
+button.date-pill:disabled { cursor:not-allowed; }
+button.slot-button { cursor:pointer; font:inherit; }
+.sample-ad { display:grid; gap:.8rem; justify-items:start; align-content:center; width:100%; min-height:230px; padding:1.75rem; border:1px solid var(--line); background:var(--paper-warm); }
+.sample-ad small { color:var(--muted); text-transform:uppercase; letter-spacing:.1em; font-size:.7rem; }
+.sample-ad strong { max-width:24ch; font-size:1.8rem; line-height:1.15; }
+.sample-ad p { margin:0; }
+.sample-ad a { color:var(--teal-dark); font-weight:700; }
+.video-section { max-width:1200px; }
+.video-section video { display:block; width:100%; height:auto; aspect-ratio:2560/1528; background:#101c1b; border:1px solid var(--line); border-radius:6px; box-shadow:var(--shadow-soft); margin-bottom:1rem; }
+.video-section .fine-print { max-width:95ch; }
+.diagram-link { display:block; padding:1rem; background:white; border:1px solid var(--line); border-radius:6px; margin:1.5rem 0; }
+.diagram-link img { width:100%; height:auto; }
+#customer,#staff,#backend { scroll-margin-top:1rem; }
+.date-strip button { flex-shrink:0; }
+@media (max-width:820px) {
+  .sample-ad { min-height:180px; padding:1.2rem; }
+  .diagram-link { padding:.25rem; }
+  .booking-confirm { scroll-margin-top:.5rem; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }

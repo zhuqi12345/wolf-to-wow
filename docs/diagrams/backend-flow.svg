@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1940" viewBox="0 0 1500 1940" role="img" aria-labelledby="title description">
+<title id="title">Wolf to Wow backend workflow</title>
+<desc id="description">The PHP application's account, booking, approval, cancellation, contact, password recovery and event logic, with its database and configuration.</desc>
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#67847f"/></marker>
+<style>
+text { font-family:Arial,Helvetica,sans-serif; fill:#203c3a; }
+.title { font-size:36px; font-weight:700; }
+.subtitle { font-size:18px; fill:#55706b; }
+.section { font-size:20px; font-weight:700; }
+.label { font-size:17px; font-weight:700; }
+.body { font-size:16px; }
+.small { font-size:14px; fill:#55706b; }
+.edge { font-size:14px; font-weight:700; fill:#48635e; paint-order:stroke; stroke:#ffffff; stroke-width:5px; stroke-linejoin:round; }
+.line { fill:none; stroke:#67847f; stroke-width:1.8; marker-end:url(#arrow); }
+</style></defs>
+<rect width="1500" height="1940" fill="#f6f9f7"/>
+<rect x="0" y="0" width="1500" height="9" fill="#153f3b"/>
+
+<text x="38" y="65" class="title">Wolf to Wow</text>
+<text x="38" y="101" class="subtitle">Backend workflow · PHP / mysqli / MariaDB</text>
+<text x="1462" y="64" class="small" text-anchor="end">IMPLEMENTATION OVERVIEW</text>
+<text x="1462" y="93" class="small" text-anchor="end">Accounts → booking → staff review → customer updates</text>
+<rect x="38" y="129" width="1424" height="92" rx="10" fill="#153f3b" stroke="#153f3b"/>
+<text x="59" y="162" class="label" style="fill:#ffffff">SHARED REQUEST INITIALIZATION</text>
+<text x="59" y="191" class="body" style="fill:#e2efea">app.php starts the session, loads configuration, connects via mysqli and ensures the schema; current_user() reads the session user_id.</text>
+<rect x="38" y="245" width="438" height="1015" rx="14" fill="#edf4f0" stroke="#c4d7cd"/>
+<text x="58" y="279" class="section">01  Accounts and access</text>
+<rect x="496" y="245" width="508" height="1015" rx="14" fill="#edf4f0" stroke="#c4d7cd"/>
+<text x="516" y="279" class="section">02  Availability and booking</text>
+<rect x="1024" y="245" width="438" height="1015" rx="14" fill="#edf4f0" stroke="#c4d7cd"/>
+<text x="1044" y="279" class="section">03  Review and cancellation</text>
+<rect x="58" y="303" width="193" height="185" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="74" y="332" class="label">Registration</text>
+<text x="74" y="358" class="body">Validate owner fields,</text>
+<text x="74" y="381" class="body">email and password.</text>
+<text x="74" y="404" class="body">Require unique email.</text>
+<text x="74" y="427" class="body">password_hash()</text>
+<text x="74" y="450" class="body">Save optional pets.</text>
+<rect x="267" y="303" width="189" height="185" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="283" y="332" class="label">Login</text>
+<text x="283" y="358" class="body">Look up account</text>
+<text x="283" y="381" class="body">by email.</text>
+<text x="283" y="404" class="body">password_verify()</text>
+<text x="283" y="427" class="body">Failure: flash error</text>
+<text x="283" y="450" class="body">and return to login.</text>
+<polyline points="154,488 154,517 256,517 256,546" class="line"/>
+<polyline points="361,488 361,517 256,517 256,546" class="line"/>
+<rect x="58" y="546" width="398" height="111" rx="10" fill="#e3f1e9" stroke="#97bba7"/>
+<text x="74" y="575" class="label">Session and route access</text>
+<text x="74" y="601" class="body">Store user_id after registration or valid login.</text>
+<text x="74" y="624" class="body">Protected routes require a current user.</text>
+<text x="74" y="647" class="body">Otherwise redirect to the login form.</text>
+<polyline points="256,657 256,695" class="line"/>
+<rect x="58" y="695" width="398" height="144" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="74" y="724" class="label">My Account</text>
+<text x="74" y="750" class="body">Update own address and phone.</text>
+<text x="74" y="773" class="body">Verify old password before changing it.</text>
+<text x="74" y="796" class="body">Add pets; read pets by the owner user_id.</text>
+<text x="74" y="819" class="body">Query only the owner’s upcoming bookings.</text>
+<polyline points="456,601 466,601 466,920 456,920" class="line" stroke-dasharray="5 5"/>
+<rect x="58" y="877" width="398" height="87" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="74" y="906" class="label">Logout</text>
+<text x="74" y="932" class="body">Destroy the session; return to the home page.</text>
+<rect x="58" y="1002" width="398" height="153" rx="10" fill="#eef1f9" stroke="#abb5ce"/>
+<text x="74" y="1031" class="label">Data used</text>
+<text x="74" y="1057" class="body">site_users: identity, password hash, admin flag</text>
+<text x="74" y="1080" class="body">site_dogs: owner-linked pet profiles</text>
+<text x="74" y="1103" class="body">Bookings reference user_id; the submitted</text>
+<text x="74" y="1126" class="body">dog name and size are saved in the booking.</text>
+<text x="58" y="1218" class="small">register.php · login.php · account.php · logout.php</text>
+<rect x="516" y="303" width="468" height="88" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="532" y="332" class="label">Browse availability</text>
+<text x="532" y="358" class="body">Visitors can view dates and available spots.</text>
+<text x="532" y="381" class="body">Submitting a booking requires a signed-in user.</text>
+<polyline points="750,391 750,418" class="line"/>
+<rect x="516" y="418" width="468" height="110" rx="10" fill="#fff5df" stroke="#d1b777"/>
+<text x="532" y="447" class="label">Validate submission</text>
+<text x="532" y="473" class="body">POST only; required fields and valid dog size.</text>
+<text x="532" y="496" class="body">Weekdays from today through today + 14 days.</text>
+<text x="532" y="519" class="body">Validate service type and selected period/slot.</text>
+<polyline points="750,528 750,550 630,550 630,578" class="line"/>
+<text x="571" y="563" class="edge">Grooming</text>
+<polyline points="750,528 750,550 871,550 871,578" class="line"/>
+<text x="840" y="563" class="edge">Daycare</text>
+<rect x="516" y="578" width="226" height="207" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="532" y="607" class="label">Grooming checks</text>
+<text x="532" y="633" class="body">Valid service + groomer</text>
+<text x="532" y="656" class="body">and allowed start time.</text>
+<text x="532" y="679" class="body">Check occupied start slot.</text>
+<text x="532" y="702" class="body">Check weekly work hours.</text>
+<text x="532" y="725" class="body">Each booking = 90 min.</text>
+<text x="532" y="748" class="body">Ignore cancelled records.</text>
+<rect x="758" y="578" width="226" height="207" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="774" y="607" class="label">Daycare checks</text>
+<text x="774" y="633" class="body">AM / PM / FULL period.</text>
+<text x="774" y="656" class="body">16 dogs per half-day.</text>
+<text x="774" y="679" class="body">FULL counts in AM + PM.</text>
+<text x="774" y="702" class="body">FULL availability is the</text>
+<text x="774" y="725" class="body">lower AM / PM balance.</text>
+<text x="774" y="748" class="body">Ignore cancelled records.</text>
+<polyline points="629,785 629,811 750,811 750,840" class="line"/>
+<polyline points="871,785 871,811 750,811 750,840" class="line"/>
+<rect x="516" y="840" width="468" height="110" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="532" y="869" class="label">Server-side price calculation</text>
+<text x="532" y="895" class="body">Grooming: service rate for size × groomer factor.</text>
+<text x="532" y="918" class="body">Daycare: rate for the selected period and size.</text>
+<text x="532" y="941" class="body">The POST handler computes the stored estimate.</text>
+<polyline points="750,950 750,982" class="line"/>
+<rect x="516" y="982" width="468" height="88" rx="10" fill="#e3f1e9" stroke="#97bba7"/>
+<text x="532" y="1011" class="label">Insert pending booking</text>
+<text x="532" y="1037" class="body">Link to user_id; save details and price estimate.</text>
+<text x="532" y="1060" class="body">Pending bookings already occupy capacity.</text>
+<rect x="516" y="1102" width="468" height="88" rx="10" fill="#fff0eb" stroke="#d4a092"/>
+<text x="532" y="1131" class="label">If any check fails</text>
+<text x="532" y="1157" class="body">Show a flash error and redirect to selection.</text>
+<text x="532" y="1180" class="body">Do not insert the booking.</text>
+<text x="516" y="1218" class="small">booknow.php · booknow_process*.php · app.php</text>
+<rect x="1044" y="303" width="398" height="87" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="1060" y="332" class="label">Customer view</text>
+<text x="1060" y="358" class="body">Only own bookings dated today or later.</text>
+<rect x="1044" y="410" width="398" height="110" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="1060" y="439" class="label">Staff view and action guard</text>
+<text x="1060" y="465" class="body">Login + USR_IsAdmin = 1.</text>
+<text x="1060" y="488" class="body">Dashboard lists today and future bookings.</text>
+<text x="1060" y="511" class="body">An update requires stored status = pending.</text>
+<polyline points="1243,520 1243,552" class="line"/>
+<rect x="1138" y="552" width="210" height="63" rx="10" fill="#fff5df" stroke="#d1b777"/>
+<text x="1154" y="581" class="label">PENDING</text>
+<polyline points="1138,584 1100,584 1100,657" class="line"/>
+<text x="1047" y="638" class="edge">Staff cancel</text>
+<polyline points="1348,584 1386,584 1386,657" class="line"/>
+<text x="1294" y="638" class="edge">Staff confirm</text>
+<rect x="1044" y="657" width="190" height="63" rx="10" fill="#fff0eb" stroke="#d4a092"/>
+<text x="1060" y="686" class="label">CANCELLED</text>
+<rect x="1252" y="657" width="190" height="63" rx="10" fill="#e3f1e9" stroke="#97bba7"/>
+<text x="1268" y="686" class="label">CONFIRMED</text>
+<text x="1347" y="746" class="small" text-anchor="middle">Stored as approved</text>
+<polyline points="1347,759 1347,788 1243,788 1243,819" class="line"/>
+<polyline points="1243,615 1243,819" class="line" stroke-dasharray="5 5"/>
+<text x="1128" y="778" class="edge">Owner may cancel</text>
+<rect x="1044" y="819" width="398" height="134" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="1060" y="848" class="label">Customer cancellation guard</text>
+<text x="1060" y="874" class="body">POST + booking belongs to session user_id.</text>
+<text x="1060" y="897" class="body">Booking date is today or later.</text>
+<text x="1060" y="920" class="body">Pending or confirmed → cancelled.</text>
+<text x="1060" y="943" class="body">Other requests leave the booking unchanged.</text>
+<polyline points="1044,886 1034,886 1034,691 1044,691" class="line" stroke-dasharray="5 5"/>
+<rect x="1044" y="1002" width="398" height="134" rx="10" fill="#e3f1e9" stroke="#97bba7"/>
+<text x="1060" y="1031" class="label">Capacity after status changes</text>
+<text x="1060" y="1057" class="body">Pending and confirmed reserve capacity.</text>
+<text x="1060" y="1080" class="body">Cancelled records are excluded from queries.</text>
+<text x="1060" y="1103" class="body">Next availability request sees freed capacity.</text>
+<text x="1060" y="1126" class="body">Staff cannot change a non-pending booking.</text>
+<text x="1044" y="1218" class="small">staff.php · cancel_booking.php · account.php</text>
+<text x="38" y="1314" class="section">04  Supporting backend features</text>
+<rect x="38" y="1337" width="462" height="238" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="54" y="1366" class="label">Contact messages</text>
+<text x="54" y="1392" class="body">Validate name, email, subject and message.</text>
+<text x="54" y="1415" class="body">Attempt MailDev SMTP; fall back to PHP mail().</text>
+<text x="54" y="1438" class="body">Save the message and sending result</text>
+<text x="54" y="1461" class="body">whether the email attempt succeeds or fails.</text>
+<text x="54" y="1484" class="body"></text>
+<text x="54" y="1507" class="body">contact.php → email.lib.php → contact table</text>
+<rect x="519" y="1337" width="462" height="238" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="535" y="1366" class="label">Password recovery</text>
+<text x="535" y="1392" class="body">Find the account from the supplied email.</text>
+<text x="535" y="1415" class="body">Generate a temporary password and email it.</text>
+<text x="535" y="1438" class="body">Update the stored hash only if sending succeeds.</text>
+<text x="535" y="1461" class="body">Failure leaves the stored password unchanged.</text>
+<text x="535" y="1484" class="body"></text>
+<text x="535" y="1507" class="body">forgot_password.php → email.lib.php → users</text>
+<rect x="1000" y="1337" width="462" height="238" rx="10" fill="#ffffff" stroke="#c8d9d2"/>
+<text x="1016" y="1366" class="label">Event content</text>
+<text x="1016" y="1392" class="body">Read and parse content/Events.txt.</text>
+<text x="1016" y="1415" class="body">Derive title, slug, summary and paragraphs.</text>
+<text x="1016" y="1438" class="body">Render event listings and individual pages.</text>
+<text x="1016" y="1461" class="body">Event content is file-backed, not a DB table.</text>
+<text x="1016" y="1484" class="body"></text>
+<text x="1016" y="1507" class="body">events.php / event.php → app.php</text>
+<text x="38" y="1625" class="section">05  Persistence and shared behavior</text>
+<rect x="38" y="1647" width="462" height="221" rx="10" fill="#eef1f9" stroke="#abb5ce"/>
+<text x="54" y="1676" class="label">Database tables</text>
+<text x="54" y="1702" class="body">site_users · site_dogs · grm_groomers</text>
+<text x="54" y="1725" class="body">grmbk_groombookings</text>
+<text x="54" y="1748" class="body">daybk_daycarebookings</text>
+<text x="54" y="1771" class="body">site_contactmessages</text>
+<text x="54" y="1794" class="body">Owner inputs use prepared statements.</text>
+<rect x="519" y="1647" width="462" height="221" rx="10" fill="#eef1f9" stroke="#abb5ce"/>
+<text x="535" y="1676" class="label">Configuration and runtime</text>
+<text x="535" y="1702" class="body">Defaults → config.local.php → environment.</text>
+<text x="535" y="1725" class="body">mysqli connection uses utf8mb4.</text>
+<text x="535" y="1748" class="body">Session files live in storage/sessions.</text>
+<text x="535" y="1771" class="body">Dynamic HTML values are escaped.</text>
+<text x="535" y="1794" class="body">Actions use flash feedback and redirects.</text>
+<rect x="1000" y="1647" width="462" height="221" rx="10" fill="#eef1f9" stroke="#abb5ce"/>
+<text x="1016" y="1676" class="label">Demo initialization</text>
+<text x="1016" y="1702" class="body">CLI only: init-demo.php --demo.</text>
+<text x="1016" y="1725" class="body">Requires a database name ending in _demo.</text>
+<text x="1016" y="1748" class="body">Creates schema and seeds fictional data.</text>
+<text x="1016" y="1771" class="body">Repeat runs preserve accounts and bookings.</text>
+<text x="1016" y="1794" class="body">Page visits do not provision demo accounts.</text>
+<text x="38" y="1908" class="small">Source-checked overview of the current PHP application. Dashed arrows show optional customer actions.</text>
+<text x="1462" y="1908" class="small" text-anchor="end">WOLF TO WOW / PORTFOLIO</text>
+</svg>

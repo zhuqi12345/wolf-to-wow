@@ -1,0 +1,48 @@
+From Wolve to Wow
+
+We are a dog grooming and doggy daycare start up in Edmonton, well not a start up, its been around for years but we are the new owners.  Our address is below - notice it doesn't appear on the website?  Seems pretty basic. Our current address is:
+123 Fake Street, Edmonton AB T5A 1B4   
+
+We are a busy little place, people love us but the website needs work.  It was done by the previous owner's son's company and sometimes I don't think they knew what doing and they were quite slow so that's why we are coming to you. 
+
+We don't have our social media team set up yet, can you please just stub in links to Facebook, X and Instagram? Our content was written by the previous owner's son's company, let me vent...they tried their best...
+
+There's no pictures!  Not a one...we gave them so many pictures.  I've included them all in the content_images folder.  Can you please add some?
+
+People submit the grooming and daycare bookings - well...I think they do?  There's no way for us to view them.  Also, if someone is filling out a grooming request, could we give them an idea of what it would cost based on the size of the dog and the services they need done?
+
+We are expanding to have a storefront - but not much is done yet but we are going to need a page for it and we'll show some advertising on that page, I'll include that information in the advertising_how_to folder.
+
+The original website is in the website folder - good luck!
+
+SO! to sum up, here's what we'd need:
+
+•	First off - improve overall look & feel of the website. (Debug HTML5 and PHP/MySQL issues with the starter site)
+		The previous developer left some weird stuff in there, the whole thing probably needs cleaning up.  Can you add in our address?  Contact us page? Footer?  What do you think?
+		You can choose to rewrite the entire site BUT we need all the functionality the current site has tried to implement.
+		Can you add a photos page?  Or integrate some of the photos into the site?
+		We have events!  
+			The links for them are on the Home page as well as the grooming page for some reason.  Not sure what's going on there.  
+			I have the copy in the content folder.  
+			Are you able to make a page for each event?  Or does it make more sense where we can add our own events to a database or something? I'll leave that up to you.
+•	Make it so it looks good on people's phones? (Add responsive design)
+		Everyone uses their phones now a days right?  They mentioned something about Firefox having a responsive design mode as one of their tools?
+•	New products page (Add advertising using the customer’s chosen provider)
+		Just showing advertising for now, look to the advertising_how_to folder.
+•	Send us emails! :) (Create / finish the contact form using HTML5 that interacts with an existing email-sending script)
+		Script is in there (email.php), hopefully this is easy by calling the send_email function.
+•	Create additional calculator(s) for customer use. (Add functionality to the customer’s existing booking pages)
+		Can you update the grooming booking with a calculator / cost estimate for the size of dog and the service(s) chosen?
+•	Bugs (Debug two issues with the site)
+		I think the daycare works, not the grooming. Get both the grooming and daycare submissions working / submitting to the database?
+		This last one incorporates 3 buggy pieces with the navigation:
+			1. The Book Now menu item only appears on the home page?  Is there a way to make it so its all the same?
+			2. The footer is different from page to page as well? Not sure what's going on there.
+			3. The side bar links are a mess too...yeesh.
+•	Lastly, we'll need a logo. Can you put something together?  I think there's the original wolf picture in there somewhere called LogoStart.png...or so I've been told.
+
+When you get to a good point, show me the work you've done!  I'm excited to see where you take the site!
+
+
+
+

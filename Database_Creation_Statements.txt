@@ -1,0 +1,39 @@
+CREATE TABLE grm_groomers (
+    GRM_ID          CHAR(36)        NOT NULL DEFAULT (UUID()),
+    GRM_GroomerName VARCHAR(50)     NOT NULL,
+    GRM_HoursPerWeek INT            NOT NULL,
+    CONSTRAINT PK_grm_groomers PRIMARY KEY (GRM_ID)
+);
+
+INSERT INTO grm_groomers (GRM_GroomerName, GRM_HoursPerWeek) VALUES ('Sarah Mitchell', 40);
+INSERT INTO grm_groomers (GRM_GroomerName, GRM_HoursPerWeek) VALUES ('Jake Thornton', 32);
+INSERT INTO grm_groomers (GRM_GroomerName, GRM_HoursPerWeek) VALUES ('Priya Patel', 40);
+INSERT INTO grm_groomers (GRM_GroomerName, GRM_HoursPerWeek) VALUES ('Cody Brennan', 24);
+INSERT INTO grm_groomers (GRM_GroomerName, GRM_HoursPerWeek) VALUES ('Linda Kowalski', 36);
+
+CREATE TABLE grmbk_groombookings (
+    GRMBK_ID        CHAR(36)        NOT NULL DEFAULT (UUID()),
+    GRMBK_Date      DATE            NOT NULL,
+    GRM_ID          CHAR(36)        NOT NULL,
+    GRMBK_DogName   VARCHAR(50)     NOT NULL,
+    GRMBK_DogSize   CHAR(3)         NOT NULL,
+    GRMBK_ServicesToPerform   VARCHAR(500)     NOT NULL,
+    GRMBK_Approved  bit(1) NOT NULL DEFAULT b'0',
+    CONSTRAINT PK_grmbk_groombookings PRIMARY KEY (GRMBK_ID),
+    CONSTRAINT FK_GRMBK_Groomer FOREIGN KEY (GRM_ID) 
+        REFERENCES grm_groomers(GRM_ID),
+    CONSTRAINT CHK_GRMBK_DogSize CHECK (GRMBK_DogSize IN ('S', 'M', 'L', 'XL', 'XXL'))
+);
+
+CREATE TABLE daybk_daycarebookings (
+    DAYBK_ID            CHAR(36)        NOT NULL DEFAULT (UUID()),
+    DAYBK_Date          DATE            NOT NULL,
+    DAYBK_DogName       VARCHAR(50)     NOT NULL,
+    DAYBK_DogSize       CHAR(3)         NOT NULL,
+    DAYBK_HumanName     VARCHAR(50)     NOT NULL,
+    DAYBK_HumanPhone    VARCHAR(10)     NOT NULL,
+    DAYBK_HumanEmail    VARCHAR(50)     NOT NULL,
+    DAYBK_Approved  bit(1) NOT NULL DEFAULT b'0',
+    CONSTRAINT PK_daybk_daycarebookings PRIMARY KEY (DAYBK_ID),
+    CONSTRAINT CHK_DAYBK_DogSize CHECK (DAYBK_DogSize IN ('S', 'M', 'L', 'XL', 'XXL'))
+);
